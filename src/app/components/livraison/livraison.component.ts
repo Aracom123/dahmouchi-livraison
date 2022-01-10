@@ -92,7 +92,6 @@ export class LivraisonComponent implements OnInit {
   onGetAllLivraisons(obs: Observable<any>){
     this.montant_dueTT = 0;
     obs.subscribe(data => {
-      console.log(data);
       let lvrsons = data.content;
       this.livraisons = data.content;
       for(let liv of lvrsons){

@@ -27,5 +27,5 @@ app.get('/*', function(req, res) {
 // }
 // app.use(cors(corsOptions));
 
-app.listen(8082);
+app.listen(process.env.PORT || 8080);
 console.log("App listening on port 8082");

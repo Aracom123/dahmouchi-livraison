@@ -1,0 +1,54 @@
+<!-- <app-depense-nav-bar (depenseEventEmitter)="onActionEvent($event)"></app-depense-nav-bar> -->
+
+<div class="container">
+    <ng-container>
+        
+        <ng-container >
+            <div class="col-lg-12 col-sm-12 col-md-12">
+                <h2 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase">Liste des depenses</h2>
+                <div class="text-right">
+                    <button (click)="onAddDepense()" class="btn btn-md btn-primary">
+                        <i class="fa fa-plus">Ajouter Depense</i>
+                    </button>
+                </div>
+                <br>
+                <table class="table table-bordered table-stripped" *ngIf="depenses.length>=1;else chargement">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Montant</th>
+                            <th>Référence</th>
+                            <th>Date</th>
+                            <th>Service</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let depense of depenses;let i=index"> 
+                        <td>{{ i+1 }}</td>
+                        <td>{{depense.montant }}</td>
+                        <td>{{depense.reference }}</td>
+                        <td>{{depense.date }}</td>
+                        <td>{{services[i].libelle }}</td>
+            
+                        <td align="center">
+                            <!-- <button (click)="onViewDepense(depense)" class="btn-primary ml-2" >
+                                <span class="fa fa-eye"></span>
+                            </button> -->
+                            <button (click)="onUpdateDepense(depense)" class="btn-primary ml-2" >
+                                <span class="fa fa-edit"></span>
+                            </button>
+                            <button (click)="onDeleteDepense(depense)" class="btn-danger ml-2" >
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+                <ng-template #chargement >
+                    <div>
+                        Aucun enregistrement
+                    </div>
+                </ng-template>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

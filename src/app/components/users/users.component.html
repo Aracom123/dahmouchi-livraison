@@ -1,0 +1,43 @@
+<!-- <app-users-nav-bar (userEventEmitter)="onActionEvent($event)"></app-users-nav-bar> -->
+
+<div class="container">
+    <h1 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase">Liste des utilisateurs</h1>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 text-right pb-2">
+            <button class="btn btn-primary" (click)="onAddUser()"><i class="fa fa-plus"></i>&nbsp;Ajouter Utilisateur</button>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="users">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>E-mail</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+                <th>Roles</th>
+                <th style="text-align: center;">Action</th>            
+            </tr>
+        </thead>
+        <tr *ngFor="let user of users;let i=index"> 
+            <td>{{ i+1 }}</td>
+            <td>{{user.email }}</td>
+            <td>{{user.nom }}</td>
+            <td>{{user.prenom }}</td>
+            <td>{{user.numero }}</td>
+            <td>{{ user.profile.libelle }}</td>
+            <td align="center">
+                <button (click)="onViewUser(user)" class="btn-success ml-2" >
+                    <span class="fa fa-eye"></span>
+                </button>
+                <button (click)="onUpdateUser(user)" class="btn-primary ml-2" >
+                    <span class="fa fa-edit"></span>
+                </button>
+                <button (click)="onDeleteUser(user)" class="btn-danger ml-2" >
+                    <span class="fa fa-trash"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

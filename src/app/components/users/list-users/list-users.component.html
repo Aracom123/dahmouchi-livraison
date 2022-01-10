@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="col-8 view-user">
+        <h2 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase">Informations sur l' utilisateur</h2>
+        <br>
+        <table class="table table-bordered table-striped" *ngIf="user">
+            <tr>
+                <td style="font-weight: 600;">Nom</td>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 600;">Prénom</td>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 600;">Téléphone</td>
+                <td>{{ user.numero }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 600;">Créé le</td>
+                <td>{{ user.created_at }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 600;">Profile</td>
+                <td>{{ profile.libelle }}</td>
+            </tr>
+            
+        </table>
+        <button (click)="redirection('users')" class="btn btn-danger ml-2" >
+            <i class="fa fa-times"></i>&nbsp;Retouner
+        </button>
+        <button (click)="onUpdateUser(user)" class="btn btn-primary ml-2" >
+            <i class="fa fa-edit"></i>&nbsp;Modifier
+        </button>     
+    </div>
+</div>

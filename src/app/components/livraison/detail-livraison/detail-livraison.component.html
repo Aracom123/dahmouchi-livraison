@@ -1,0 +1,133 @@
+<div class="container col-5" *ngIf="livraison">
+    <h1 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase py-3">Détail d'une livraison</h1>
+    <div class="row" id="print-section">
+        <div class="col-12 px-0">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <table border="0" width="100%">
+                        <tr>
+                            <td>
+                                <b>Sté DAHAMOUCHI</b><br>
+                                Tel: <i>90 75 48 43</i><br>
+                                Adresse: <i>Boukoki</i><br>
+                                Email: <i>dahamouchi@gmail.com</i>
+                            </td>
+                            <td colspan="5"></td>
+                            <td align="right" *ngIf="livraison.client">
+                                <b>CLIENT</b><br>
+                                Nom: {{ livraison.client.prenom}} <br>
+                                Prénom: {{ livraison.client.nom}} <br>
+                                Numéro: {{ livraison.client.numero}}
+                            </td>
+                        </tr>
+                    </table>
+                    <br><br>
+                    <table border="0" width="100%">
+                        <tr>
+                            <td *ngIf="livraison.compagniePartenaire && livraison.livreur">
+                                Compagnie: <i>{{ livraison.compagniePartenaire.libelle}}</i><br>
+                                Livreur: <i>{{ livraison.livreur.prenom}} {{ livraison.livreur.nom}}</i><br>
+                                Livré le: <i>{{ livraison.dateLivraison | date: 'shortDate'}}</i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <div class="col-lg-4 col-sm-6 col-md-12">
+                    <table class="table table-bordered table-sm small">
+                        <thead>
+                            <tr>
+                                <th colspan="2">LIVRAISON</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <th>Date:&nbsp;</th>
+                            <td>{{ livraison.dateLivraison}}</td> 
+                        </tr>
+                        <tr>
+                            <th>Frais:&nbsp;</th>
+                            <td>{{ livraison.fraisLivraison | number: '1.0-0'}}</td>
+                        </tr>
+                    </table> 
+                </div>
+                <div class="col-lg-4 col-sm-6 col-md-12">
+                    <table class="table table-bordered table-sm small">
+                        <thead>
+                            <tr>
+                                <th colspan="2">CLIENT</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <th>Nom & Prénom:&nbsp;</th>
+                            <td>{{ livraison.client.prenom}} {{ livraison.livreur.nom}}</td>
+                        </tr>
+                        <tr>
+                            <th>numero:&nbsp;</th>
+                            <td>{{ livraison.client.numero}}</td>
+                        </tr>
+                    </table>  
+                </div>
+                <div class="col-lg-4 col-sm-6 col-md-12">
+                    <table class="table table-bordered table-sm small">
+                        <thead>
+                            <tr>
+                                <th colspan="2">LIVREUR & COMPAGNIE</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <th>Livreur:&nbsp;</th>
+                            <td>{{ livraison.livreur.prenom}} {{ livraison.livreur.nom}}</td>
+                        </tr>
+                        <tr>
+                            <th>Compagnie:&nbsp;</th>
+                            <td>{{ livraison.compagniePartenaire.libelle}}</td>
+                        </tr>
+                    </table>  
+                </div> -->
+            </div>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <span class="h3 text-gray-800">Liste de colis</span>
+                    <table class="table table-sm small table-striped table-bordered" width="100%">
+                        <thead class="bg-dark" style="background-color: #000 !important;">
+                        <tr>
+                            <th>Code</th>
+                            <th>Nature</th>
+                            <th>Valeur</th>
+                            <th>Quantité</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let c of livraison.colis; let i = index;">
+                                <td>
+                                    {{c.codeColis}}
+                                </td>
+                                <td>
+                                    {{ c.nature }}
+                                </td>
+                                <td align="right">
+                                    {{ c.valeurColis | number: '1.0-0'}}
+                                </td>
+                                <td align="center">
+                                    {{ c.quantite | number: '1.0-0'}}
+                                </td>                                        
+                                <td>
+                                    {{ c.description | number: '1.0-0'}}                        
+                                </td>
+                            </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-6 px-0">
+            <button class="btn btn-danger" (click)="redirection('livraisons')"><i class="fa fa-chevron-left"></i>&nbsp;Retourner</button>
+        </div>
+        <div class="col-6 text-right px-0">
+            <button class="btn btn-success" printSectionId="print-section"  ngxPrint><i class="fa fa-print"></i>&nbsp;Imprimer</button>
+        </div>
+    </div>
+</div>

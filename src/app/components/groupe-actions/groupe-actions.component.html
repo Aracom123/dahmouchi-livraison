@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-lightt">
+    <ul class="navbar navbar-nav">
+        <li>
+            <button (click)="onGetAllGroupeActions()" class="btn btn-outline-info ml-2">All</button>
+        </li>
+        <li>
+            <button (click)="onGetEnabledGroupeActions()" class="btn btn-outline-info ml-2">Enabled</button>
+        </li>
+        <li>
+            <button (click)="onAddGroupeAction()" class="btn btn-outline-info ml-2">Add</button>
+        </li>
+    </ul>
+    <ul class="navbar navbar-nav ml-auto">
+        <li>
+            <form  class="form-inline my-2 my-lg-0" ngModel name="keyWord" #f="ngForm" (ngSubmit)="onSearch(f.value)">
+                <div class="form-group">
+                    <input type="search" placeholder="Search" class="form-control mr-sm-2" type="text">
+                    <button class="btn btn-outline-info my-2 my-sm-0">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </div>
+            </form>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container">
+    <ng-container>
+        
+        <ng-container >
+            <h2 class="text-center">Liste des groupes</h2>
+            <div class="border">
+                <button (click)="onAddGroupeAction()" class="btn btn-md btn-outline-primary">
+                    <i class="fa fa-plus fa-2x">Ajouter Action</i>
+                </button>
+            </div>
+            <table class="table" *ngIf="groupes._embedded.groupes">
+                <tr>
+                    <th>ID</th><th>Libelle</th><th>Url</th><th>Icon</th><th>Groupe</th>
+                </tr>
+                <tr *ngFor="let groupe of groupes._embedded.groupes;let i=index"> 
+                    <td>{{ i+1 }}</td>
+                    <td>{{groupe.libelle }}</td>
+                    
+                    <td>
+                        <button (click)="onViewGroupeAction(groupe)" class="btn-primary ml-2" >
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button (click)="onUpdateGroupeAction(groupe)" class="btn-primary ml-2" >
+                            <span class="fa fa-edit"></span>
+                        </button>
+                        <button (click)="onDeleteGroupeAction(groupe)" class="btn-danger ml-2" >
+                            <span class="fa fa-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </ng-container>
+    </ng-container>
+</div>

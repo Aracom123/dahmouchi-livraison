@@ -1,0 +1,73 @@
+<div class="container" *ngIf="clientFormGroup">
+    <div class="col-8 formulaire">
+        <h2 class="text-center">Modifier Client</h2>
+        <div *ngIf="currentClient">
+            <form [formGroup]="clientFormGroup" (ngSubmit)="onUpdateUser()">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Nom</label>
+                            <input type="text" class="form-control" formControlName="nom">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Prénom</label>
+                            <input type="text" class="form-control" formControlName="prenom">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Numéro</label>
+                            <input type="number" class="form-control" formControlName="numero">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">E-mail</label>
+                            <input type="text" class="form-control" formControlName="email" 
+                            [ngClass]="{'is-invalid':submitted && clientFormGroup.controls.email.errors}">
+                            <div *ngIf="submitted && clientFormGroup.controls.email.errors" class="invalid-feedback">
+                                <div *ngIf="clientFormGroup.controls.email.errors.required">E-mail is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <input type="hidden" value="defaultValue" class="form-control" formControlName="password">
+                        <div class="form-group">
+                            <label for="">Type</label>
+                            <select name="type" id="" class="form-control" formControlName="type"
+                                [ngClass]="{'is-invalid':submitted && clientFormGroup.controls.type.errors}">
+                                <option value="" disabled>Selectionnez le type de client</option>
+                                <option value="morale">Morale</option>
+                                <option value="physique">Physique</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="">NINIA</label>
+                            <input type="text" class="form-control" formControlName="ninia">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="">RCCM</label>
+                            <input type="text" class="form-control" formControlName="rccm">
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group text-right">                    
+                    <button class="btn btn-danger" (click)="redirection('clients')"><i class="fa fa-times"></i>&nbsp;Annuler</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Enregistrer</button>
+                </div>
+        </form>
+        </div>
+    </div>
+</div>

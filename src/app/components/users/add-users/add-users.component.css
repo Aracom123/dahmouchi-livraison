@@ -1,0 +1,9 @@
+label{
+    color: rgb(38, 26, 49);
+}
+.formulaire{
+    margin: 0 auto;
+}
+.err{
+    color: red;
+}

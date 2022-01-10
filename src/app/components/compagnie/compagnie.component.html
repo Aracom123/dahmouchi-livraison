@@ -1,0 +1,176 @@
+<div class="container pb-3" *ngIf="compagniePartenaires">
+    <h1 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase">Liste de compagnies partenaires</h1>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 text-right px-1">
+            <button class="btn btn-primary" (click)="triggerModal(modalData, null)"><i class="fa fa-plus"></i>&nbsp;Ajouter une companie</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12" style="background-color: white; padding: 8px 5px;">
+            <div id="print-section"> 
+                <table class="table table-bordered table-striped" *ngIf="compagniePartenaires">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Libéllé</th>
+                            <th>Téléphone</th>
+                            <th>E-mail</th>
+                            <th>Adresse</th>
+                            <th>RCCM</th>
+                            <th>Matériels affecté</th>
+                            <th style="text-align:center;">Action</th>                        
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let compagniePartenaire of compagniePartenaires;let i=index"> 
+                        <td>{{ i+1 }}</td>
+                        <td>{{ compagniePartenaire.libelle }}</td>
+                        <td>{{ compagniePartenaire.numero }}</td>
+                        <td>{{ compagniePartenaire.email }}</td>
+                        <td>{{ compagniePartenaire.adresse }}</td>
+                        <td>{{ compagniePartenaire.rccm }}</td>
+                        <td>{{ compagniePartenaire.ninia }}</td>
+                        <td align="center">
+                            <!-- <button (click)="onViewCompagniePartenaire(CompagniePartenaire)" class="btn-primary ml-2" >
+                                <span class="fa fa-eye"></span>
+                            </button> -->
+                            <button (click)="triggerModal(updateModalData, compagniePartenaire)" class="btn-primary ml-2" >
+                                <span class="fa fa-edit"></span>
+                            </button>
+                            <button (click)="onDeleteCompagniePartenaire(compagniePartenaire)" class="btn-danger ml-2" >
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>        
+    </div> 
+    <ng-template #modalData let-modal>
+        <form action="" *ngIf="compagniePartenaireFormGroup" [formGroup]="compagniePartenaireFormGroup" (ngSubmit)="onSaveCompagniePartenaire()">
+            <div class="modal-header">
+                <h1 class="h4 mb-0 text-gray-800 text-center font-weight-bold">
+                    Ajout d'une nouvelle compagnie
+                </h1>
+                <button class="close" type="button" aria-label="close" (click)="modal.dismiss('Cross Click')">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">                
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Libellé <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="libelle">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Numéro <span style="color: red;">*</span></label>
+                        <input type="numero" class="form-control" placeholder="" formControlName="numero" 
+                        [ngClass]="{'is-invalid':submitted && compagniePartenaireFormGroup.controls.numero.errors}">
+                    </div>                    
+                </div>
+                <div class="row py-2">                    
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">E-mail </label>
+                        <input type="email" class="form-control" placeholder="email@gmail.com" formControlName="email" 
+                        [ngClass]="{'is-invalid':submitted && compagniePartenaireFormGroup.controls.email.errors}">
+                    </div>  
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Adresse</label>
+                        <input type="adresse" class="form-control" placeholder="" formControlName="adresse" 
+                        [ngClass]="{'is-invalid':submitted && compagniePartenaireFormGroup.controls.adresse.errors}">
+                    </div>              
+                </div>
+                <div class="row py-2">   
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">RCCM</label>
+                            <input type="text" class="form-control" formControlName="rccm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">NINEA</label>
+                            <input type="text" class="form-control" formControlName="ninia">
+                        </div>
+                    </div>             
+                </div>
+                <h4>Tous les champs précedés de <span style="color: red;">*</span> sont obligatoires</h4>                  
+            </div>
+            <div class="modal-footer">                
+                <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">
+                   <i class="fa fa-times"></i>&nbsp;Fermer
+                </button>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit" (click)="modal.close('Save click')"><i class="fa fa-save">&nbsp;Enrégistrer</i></button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #updateModalData let-modal>
+        <form action="" *ngIf="compagniePartenaireFormGroup" [formGroup]="formUpdateCompagniePartenaire" (ngSubmit)="onUpdateCompagniePartenaire()">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="modal-basic-tile">
+                    Mise à jour d'une compagnie parteniare
+                </h4>
+                <button class="close" type="button" aria-label="close" (click)="modal.dismiss('Cross Click')">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">                
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Libellé <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="libelle">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Numéro <span style="color: red;">*</span></label>
+                        <input type="numero" class="form-control" placeholder="" formControlName="numero" 
+                        [ngClass]="{'is-invalid':submitted && compagniePartenaireFormGroup.controls.numero.errors}">
+                    </div>                    
+                </div>
+                <div class="row py-2">                    
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">E-mail </label>
+                        <input type="email" class="form-control" placeholder="email@gmail.com" formControlName="email" 
+                        [ngClass]="{'is-invalid':submitted && compagniePartenaireFormGroup.controls.email.errors}">
+                    </div>  
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Adresse</label>
+                        <input type="adresse" class="form-control" placeholder="" formControlName="adresse" 
+                        [ngClass]="{'is-invalid':submitted && compagniePartenaireFormGroup.controls.adresse.errors}">
+                    </div>              
+                </div>
+                <div class="row py-2">   
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">RCCM</label>
+                            <input type="text" class="form-control" formControlName="rccm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">NINEA</label>
+                            <input type="text" class="form-control" formControlName="ninia">
+                        </div>
+                    </div>             
+                </div>
+                <h4>Tous les champs précedés de <span style="color: red;">*</span> sont obligatoires</h4>                  
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit" (click)="modal.close('Save click')"><i class="fa fa-save">&nbsp;Enrégistrer</i></button>
+                </div>
+                <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">
+                   <i class="fa fa-times"></i>&nbsp;Fermer
+                </button>
+            </div>
+        </form>
+    </ng-template>
+</div>

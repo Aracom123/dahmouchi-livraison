@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-lightt">
+    <ul class="navbar navbar-nav">
+        <li>
+            <button (click)="onGetAllGroupeActions()" class="btn btn-outline-info ml-2">All</button>
+        </li>
+        <li>
+            <button (click)="onGetEnabledActions()" class="btn btn-outline-info ml-2">Enabled</button>
+        </li>
+        <li>
+            <button (click)="onAddGroupeAction()" class="btn btn-outline-info ml-2">Add</button>
+        </li>
+    </ul>
+    <ul class="navbar navbar-nav ml-auto">
+        <li>
+            <form  class="form-inline my-2 my-lg-0" ngModel name="keyWord" #f="ngForm" (ngSubmit)="onSearch(f.value)">
+                <div class="form-group">
+                    <input type="search" placeholder="Search" class="form-control mr-sm-2" type="text">
+                    <button class="btn btn-outline-info my-2 my-sm-0">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </div>
+            </form>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,19 @@
+@import "../styles.css";
+/* @import "../assets/dist/css/bootstrap.min.css";
+@import "../assets/dist/js/jquery.js";
+@import "../assets/dist/js/bootstrap.min.js"; */
+@import "../../node_modules/font-awesome/css/font-awesome.min.css";
+
+
+
+/*---------------------------------*/
+.logo{
+    color: #662B91;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 15px;;
+}
+
+.container-fluid{
+    margin-right: 20px !important;
+}

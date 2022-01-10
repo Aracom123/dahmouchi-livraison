@@ -1,0 +1,8 @@
+.navbar-brand{
+    color: rgb(0, 31, 204);
+    font-size: 35px;
+    font-weight: bold;
+}
+.dropdown-item{
+    color: black !important;
+}

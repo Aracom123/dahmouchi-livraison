@@ -1,0 +1,39 @@
+<app-actions-nav-bar (actionEventEmitter)="onActionEvent($event)"></app-actions-nav-bar>
+
+<div class="container">
+    <ng-container>
+        
+        <ng-container >
+            <h2 class="text-center">Liste des actions</h2>
+            <div class="border">
+                <button (click)="onAddAction()" class="btn btn-md btn-outline-primary">
+                    <i class="fa fa-plus fa-2x">Ajouter Action</i>
+                </button>
+            </div>
+            <table class="table" *ngIf="actions._embedded.actions">
+                <tr>
+                    <th>ID</th><th>Libelle</th><th>Url</th><th>Icon</th><th>Groupe</th>
+                </tr>
+                <tr *ngFor="let action of actions._embedded.actions;let i=index"> 
+                    <td>{{ i+1 }}</td>
+                    <td>{{action.libelle }}</td>
+                    <td>{{action.url }}</td>
+                    <td>{{action.icon }}</td>
+                    <td>{{action.group }}</td>
+        
+                    <td>
+                        <button (click)="onViewAction(action)" class="btn-primary ml-2" >
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button (click)="onUpdateAction(action)" class="btn-primary ml-2" >
+                            <span class="fa fa-edit"></span>
+                        </button>
+                        <button (click)="onDeleteAction(action)" class="btn-danger ml-2" >
+                            <span class="fa fa-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </ng-container>
+    </ng-container>
+</div>

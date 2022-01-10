@@ -1,0 +1,29 @@
+<app-users-nav-bar (userEventEmitter)="onActionEvent($event)"></app-users-nav-bar>
+
+<div class="container">
+    <ng-container>
+        
+        <ng-container>
+            <table class="table">
+                <tr>
+                    <th>ID</th><th>Libelle</th>
+                </tr>
+                <tr *ngFor="let profile of profiles._embedded.profiles"> 
+                    <td>{{profile.id_profile }}</td>
+                    <td>{{profile.libelle }}</td>
+                    <td>
+                        <button (click)="onViewProfile(profile)" class="btn-primary ml-2" >
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button (click)="onUpdateProfile(profile)" class="btn-primary ml-2" >
+                            <span class="fa fa-edit"></span>
+                        </button>
+                        <button (click)="onDeleteProfile(profile)" class="btn-danger ml-2" >
+                            <span class="fa fa-trash-o"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </ng-container>
+    </ng-container>
+</div>

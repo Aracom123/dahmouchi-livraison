@@ -1,0 +1,212 @@
+<div class="container">
+    <h1 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase py-3">Ajout d'une livraison</h1>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <form [formGroup]="livraisonFormGroup" (ngSubmit)="onAddLivraison()">
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills justify-content-center nav-justified">
+                    <li>
+                        <a [ngClass]="{'active': itemToActivate==1}" id="home-tab" data-toggle="tab" href="#client">Client</a>
+                    </li>
+                    <li>
+                        <a [ngClass]="{'active': itemToActivate==2}" id="profile-tab" data-toggle="tab" href="#colis">Colis</a>
+                    </li>
+                    <li>
+                        <a [ngClass]="{'active': itemToActivate==3}" id="messages-tab" data-toggle="tab" href="#compagnieLivreur">Validation</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content clearfix pt-3">
+                    <div class="tab-pane active" id="client">     
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="numero">Numéro</label>
+                                    <input type="number" id="numero" class="form-control" formControlName="numero" (change)="onChangeNumero($event)">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="email">E-mail</label>
+                                    <input type="text" id="email" class="form-control" formControlName="email" 
+                                    [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.email.errors}">
+                                    <div *ngIf="submitted && livraisonFormGroup.controls.email.errors" class="invalid-feedback">
+                                        <div *ngIf="livraisonFormGroup.controls.email.errors.required">E-mail is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                         
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="nom">Nom</label>
+                                    <input type="text" id="nom" class="form-control" formControlName="nom">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="prenom">Prénom</label>
+                                    <input type="text" id="prenom" class="form-control" formControlName="prenom">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <!-- <input type="hidden" value="defaultValue" class="form-control" formControlName="password"> -->
+                                <div class="form-group">
+                                    <label for="typeClient">Type</label>
+                                    <select name="type" id="typeClient" class="form-control" formControlName="type" (change)="onChangeTypeClient($event)"
+                                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.type.errors}">
+                                        <option value="" disabled>Selectionnez le type de client</option>
+                                        <option value="ENTREPRISE">Entreprise</option>
+                                        <option value="PERSONNE PHYSIQUE" [selected]="true">Personne physique</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row" *ngIf="typeClient">                            
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="ninea">NINIA</label>
+                                    <input type="text" id="ninea" class="form-control" formControlName="ninia">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="rccm">RCCM</label>
+                                    <input type="text" id="rccm" class="form-control" formControlName="rccm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group text-right">
+                            <a type="button" data-toggle="tab" href="#colis" class="btn btn-info" (click)="setItemToActivate(2)">Enregistrer&nbsp;<i class="fa fa-chevron-right"></i></a> 
+                        </div> -->
+
+                    </div>
+                    <div class="tab-pane" id="colis">
+                        <div formArrayName="colis">               
+                            <table class="table table-striped table-bordered">
+                                <thead class="bg-dark" style="background-color: #000 !important;">
+                                  <tr>
+                                      <th>Code colis</th>
+                                      <th>Nature</th>
+                                      <th>Valeur</th>
+                                      <th>Quantité</th>
+                                      <th>Description</th>
+                                      <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let c of lColisLivraison().controls; let i = index;" [formGroupName]="i">
+                                        <td>
+                                            <input type="text" formControlName="codeColis" name="c" class="js-example-basic-single form-control"/>
+                                        </td>
+                                        <td>
+                                            <!-- <input formControlName="nature" class="form-control" type="text"/> -->
+                                            <select name="nature" class="form-control" formControlName="nature"
+                                                [ngClass]="{'is-invalid':submitted && c.value.nature.errors}">
+                                                <option value="" disabled>Selectionnez le type</option>
+                                                <option value="SACHET">Sachet</option>
+                                                <option value="VALISE">Valise</option>
+                                                <option value="SAC">Sacs</option>
+                                                <option value="EMVELOPPE">Envéloppe</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input formControlName="valeurColis" id="{{i}}" class="form-control" type="number"/>
+                                        </td>
+                                        <td>
+                                            <input formControlName="quantite" class="form-control" type="number"/>
+                                        </td>                                        
+                                        <td>
+                                            <input formControlName="description" class="form-control" type="text"/>
+                                        </td>
+                                        <td align="center" (click)="removeColis(i)">
+                                            <i class="fa fa-trash fa-2x"></i>
+                                        </td>
+                                    </tr>                       
+                                    <tr>
+                                      <td (click)="addColis()">
+                                        <i class="fa fa-plus fa-2x"></i>
+                                      </td>
+                                    </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="compagnieLivreur">
+                        <div class="row py-2">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="compagnie">Compagnie</label>
+                                    <select name="compagniePartenaire" id="compagnie" class="form-control" formControlName="compagniePartenaire"
+                                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.compagniePartenaire.errors}">
+                                        <option value="" disabled>Selectionnez une compagnie</option>
+                                        <option *ngFor="let compagniePartenaire of compagniePartenaires" [ngValue]="compagniePartenaire">
+                                            {{compagniePartenaire.libelle}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="submitted && livraisonFormGroup.controls.compagniePartenaire.errors" class="invalid-feedback">
+                                        <div *ngIf="livraisonFormGroup.controls.compagniePartenaire.errors.required">Veuillez selectionner la compagnie</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="livreur">Livreur</label>
+                                    <select name="livreur" id="livreur" class="form-control" formControlName="livreur"
+                                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.livreur.errors}">
+                                        <option value="" disabled>Selectionnez un livreur</option>
+                                        <option *ngFor="let livreur of livreurs" [ngValue]="livreur">
+                                            {{livreur.nom}} {{livreur.prenom}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="submitted && livraisonFormGroup.controls.compagniePartenaire.errors" class="invalid-feedback">
+                                        <div *ngIf="livraisonFormGroup.controls.compagniePartenaire.errors.required">Veuillez selectionner la compagnie</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="dateLivraison">Date livraion</label>
+                                    <input type="date" id="dateLivraison" class="form-control" formControlName="dateLivraison">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="fraisLivraison">Frais livraison</label>
+                                    <input type="number" id="fraisLivraison" class="form-control" formControlName="fraisLivraison">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="adresseLivraison">Adresse livraison</label>
+                                    <input type="text" id="adresseLivraison" class="form-control" formControlName="adresseLivraison">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Enregistrer</button> 
+                        </div>  
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--  for modals  -->
+    <ng-template #modalReception let-modal>
+        
+    </ng-template>
+    <!--  for modals  -->
+    <ng-template #modalData let-modal>
+    </ng-template>
+
+    <!--   for updating reglement -->
+    <ng-template #modalUpdateData let-modal>
+    </ng-template>
+</div>

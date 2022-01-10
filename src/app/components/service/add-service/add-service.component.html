@@ -1,0 +1,22 @@
+<div class="container" *ngIf="serviceFormGroup">
+    <div class="col-8 formulaire">
+        <h2 class="text-center">Ajouter Service</h2>
+        <form [formGroup]="serviceFormGroup">
+            
+            <div class="form-group">
+                <label for="">Libelle</label>
+                <input type="text" class="form-control" formControlName="libelle">
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" class="form-control" formControlName="description">
+            </div>
+           
+            <div class="form-group">
+                <button class="btn btn-success" (click)="onSaveService()"><i class="fa fa-save"></i>&nbsp;Enregistrer</button>
+                &nbsp;
+                <button class="btn btn-danger" (click)="redirection('services')"><i class="fa fa-close-o"></i>Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>

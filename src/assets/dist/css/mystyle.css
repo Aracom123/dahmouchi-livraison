@@ -1,0 +1,21 @@
+body{
+    padding-top: 70px;
+}
+.content{
+    margin-top: 10px;
+}
+.navigation .breadcrumb{
+    float: left;
+    margin: 7px 10px;
+}
+.header blockquote{
+    margin-top: 35px;
+}
+.avatar{
+    background: url(media/bg_image.jpg) center;
+    background-size: cover;
+}
+.mini{
+    height: 100px;
+    width: 100px;
+}

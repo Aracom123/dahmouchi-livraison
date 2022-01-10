@@ -1,0 +1,45 @@
+<!-- <app-service-nav-bar (serviceEventEmitter)="onActionEvent($event)"></app-service-nav-bar> -->
+
+<div class="container">
+    <div class="col-lg-12 col-sm-12 col-md-12">
+        <h2 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase">Liste des services</h2>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12 text-right px-1">
+                <button (click)="onAddService()" class="btn btn-md btn-primary">
+                    <i class="fa fa-plus">Ajouter Service</i>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12" style="background-color: white; padding: 8px 5px;">                
+                <table class="table table-bordered table-striped" *ngIf="services">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Libelle</th>
+                            <th>Description</th>
+                            <th style="text-align:center;">Actions</th>                            
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let service of services;let i=index"> 
+                        <td>{{ i+1 }}</td>
+                        <td>{{service.libelle }}</td>
+                        <td>{{service.description }}</td>
+
+                        <td align="center">
+                            <!-- <button (click)="onViewService(service)" class="btn-primary ml-2" >
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button (click)="onUpdateService(service)" class="btn-primary ml-2" >
+                                <span class="fa fa-edit"></span>
+                            </button> -->
+                            <button (click)="onDeleteService(service)" class="btn-danger ml-2" >
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

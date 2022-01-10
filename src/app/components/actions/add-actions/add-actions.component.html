@@ -1,0 +1,36 @@
+<div class="container" *ngIf="actionFormGroup">
+    <div class="col-8 formulaire">
+        <h2 class="text-center">Ajouter utilisateur</h2>
+        <form [formGroup]="actionFormGroup">
+            <div class="form-group">
+                <label for="">Libelle</label>
+                <input type="text" class="form-control" formControlName="libelle">
+            </div>
+            <div class="form-group">
+                <label for="">Url</label>
+                <input type="text" class="form-control" formControlName="url">
+            </div>
+            <div class="form-group">
+                <label for="">Icon</label>
+                <input type="text" class="form-control" formControlName="icon">
+            </div>
+            <div class="form-group">
+                <label for="">Groupe d'action</label>
+                <select name="groupe" id="" class="form-control" formControlName="groupe"
+                    [ngClass]="{'is-invalid':submitted && actionFormGroup.controls.groupe.errors}">
+                    <option value="" disabled>Selectionnez le groupe d'action</option>
+                    <option *ngFor="let groupe of groupes._embedded.groupes" [ngValue]="groupe">
+                        {{groupe.liblle}}
+                    </option>
+                </select>
+                <div *ngIf="submitted && actionFormGroup.controls.groupe.errors" class="invalid-feedback">
+                    <div *ngIf="actionFormGroup.controls.groupe.errors.required">groupe is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" (click)="onSaveAction()">Save</button>
+                <button class="btn btn-danger" (click)="redirection('actions')">Back</button>
+            </div>
+        </form>
+    </div>
+</div>

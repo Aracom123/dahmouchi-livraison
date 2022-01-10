@@ -1,0 +1,237 @@
+<div class="container pb-3" *ngIf="livraisons">
+    <h1 class="h3 mb-0 text-gray-800 text-center font-weight-bold text-uppercase">Liste de livraisons</h1>
+
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 text-right">
+            <button class="btn btn-primary" (click)="redirection('add-livraison')"><i class="fa fa-plus"></i>&nbsp;Nouvelle livraison</button>
+        </div>
+    </div>
+    <br>
+    <div class="row py-3" style="background-color: rgb(0, 31, 204);">
+        <div class="col-md-10 col-sm-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 my-1">
+                    <input type="date" [(ngModel)]="dateLiv" (change)="onChangeDate($event)" class="form-control form-control-sm" id="">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 my-1">
+                    <select class="form-control form-control-sm" (change)="onChangeLivreur($event)">
+                        <option value="">Sélectionnez un livreur</option>
+                        <option *ngFor="let livreur of livreurs; let k=index" [value]="livreur._links.self.href">
+                            {{livreur.nom}} - {{livreur.prenom}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 my-1">
+                    <select class="form-control form-control-sm" (change)="onChangeClient($event)">
+                        <option value="">Sélectionnez un client</option>
+                        <option *ngFor="let client of clients; let k=index" [value]="client._links.self.href">
+                            {{ client.nom }} - {{ client.prenom }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-12 text-right my-1">
+            <button class="btn btn-danger btn-sm" style="background: #FF4500; font-weight: 600;"  printSectionId="print-section"  ngxPrint><i class="fa fa-print"></i>&nbsp;IMPRIMER</button>
+        </div>
+    </div>
+    <div class="row" id="print-section">
+        <div class="col-12 px-0 pt-2 font-weight-bold text-gray-800">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12" *ngIf="dateLiv">
+                    Date: {{ dateLiv }}
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         A²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²    ²11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111" *ngIf="livreurSelected">
+                    Livreur : {{ livreurSelected.nom | uppercase }} - {{ livreurSelected.prenom }}
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12" *ngIf="clientSelected">
+                    Client : {{ clientSelected.nom | uppercase }} {{ clientSelected.prenom }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-md-12" style="background-color: white; padding: 8px 0px;">
+            <div id="print-section"> 
+                <table class="table table-bordered table-sm table-stripped" *ngIf="livraisons">
+                    <thead>
+                        <tr style="font-weight: 600; font-size: 1rem; padding-top: 5px;">
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Frais</th>
+                            <th>Nbr colis</th>
+                            <th>Client</th>
+                            <th>Tél client</th>
+                            <th>Livreur</th>
+                            <th>Compagnie</th>
+                            <th style="text-align:center; width: fit-content;">Action</th>                        
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let livraison of livraisons;let i=index"> 
+                        <td>{{ i+1 }}</td>
+                        <td>{{ livraison.dateLivraison }}</td>
+                        <td align="right">{{ livraison.fraisLivraison | number:'1.0-0' }}</td>
+                        <td *ngIf="livraison.colis" align="center">{{ livraison.colis.length }}</td>
+                        <td *ngIf="livraison.client">{{ livraison.client.nom }} - {{ livraison.client.prenom }}</td>
+                        <td *ngIf="livraison.client" align="center">{{ livraison.client.numero }}</td>
+                        <td *ngIf="livraison.livreur">{{ livraison.livreur.nom }} - {{ livraison.livreur.prenom }}</td>
+                        <td *ngIf="livraison.compagniePartenaire">{{ livraison.compagniePartenaire.libelle }}</td>
+                        <td align="center" style="text-align:center; width: 145px;">
+                            <button (click)="onViewLivraison(livraison)" class="btn-success" >
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            &nbsp;
+                            <button (click)="onUpdateLivraison(livraison)" class="btn-primary" >
+                                <span class="fa fa-edit"></span>
+                            </button>
+                            &nbsp;
+                            <button (click)="onDeleteLivraison(livraison)" class="btn-danger" >
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr style="background-color: rgb(0, 31, 204); color: white; font-weight: 600; font-size: 1rem; padding-top: 5px;"> 
+                        <td>#</td>
+                        <td>TOTAL</td>
+                        <td colspan="6">{{ montant_dueTT | number:'1.0-0' }}</td>
+                        <td align="center">Action</td>
+                    </tr>
+                </table>
+            </div>
+        </div>        
+    </div> 
+    <!-- <ng-template #modalData let-modal>
+        <form action="" *ngIf="livraisonFormGroup" [formGroup]="livraisonFormGroup" (ngSubmit)="onSaveLivreur()">
+            <div class="modal-header">
+                <h2 class="modal-title text-center" id="modal-basic-tile">
+                    Ajouter livraison
+                </h2>
+                <button class="close" type="button" aria-label="close" (click)="modal.dismiss('Cross Click')">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">                
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Nom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="nom">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Prénom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="prenom">
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Numéro <span style="color: red;">*</span></label>
+                        <input type="numero" class="form-control" placeholder="" formControlName="numero" 
+                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.numero.errors}">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">E-mail </label>
+                        <input type="email" class="form-control" placeholder="email@gmail.com" formControlName="email" 
+                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.email.errors}">
+                    </div>               
+                </div>
+                <div class="row py-2">   
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Adresse</label>
+                        <input type="adresse" class="form-control" placeholder="" formControlName="adresse" 
+                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.adresse.errors}">
+                    </div> 
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="mag">Matériel roulant <span style="color: red;">*</span></label>
+                            <select name="listMatRoulants" id="mag" class="form-control" formControlName="materielRoulant">
+                                <option value="">Selectionnez</option>
+                                <option *ngFor="let mr of listMatRoulants; let k=index" [ngValue]="mr">
+                                    {{mr.libelle}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>               
+                </div>
+                <h4>Tous les champs précedés de <span style="color: red;">*</span> sont obligatoires</h4>                  
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit" (click)="modal.close('Save click')"><i class="fa fa-save">&nbsp;Enrégistrer</i></button>
+                </div>
+                <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">
+                   <i class="fa fa-times"></i>&nbsp;Fermer
+                </button>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #updateModalData let-modal>
+        <form action="" *ngIf="livraisonFormGroup" [formGroup]="formUpdateLivreur" (ngSubmit)="onUpdateLivreur()">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="modal-basic-tile">
+                    Mise à jour matériel de construction
+                </h4>
+                <button class="close" type="button" aria-label="close" (click)="modal.dismiss('Cross Click')">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">                
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Nom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="nom">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="">Prénom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="prenom">
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Numéro <span style="color: red;">*</span></label>
+                        <input type="numero" class="form-control" placeholder="" formControlName="numero" 
+                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.numero.errors}">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">E-mail </label>
+                        <input type="email" class="form-control" placeholder="email@gmail.com" formControlName="email" 
+                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.email.errors}">
+                    </div>               
+                </div>
+                <div class="row py-2">   
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label for="">Adresse</label>
+                        <input type="adresse" class="form-control" placeholder="" formControlName="adresse" 
+                        [ngClass]="{'is-invalid':submitted && livraisonFormGroup.controls.adresse.errors}">
+                    </div> 
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="mag">Matériel roulant <span style="color: red;">*</span></label>
+                            <select name="listMatRoulants" id="mag" class="form-control" formControlName="materielRoulant">
+                                <option value="">Selectionnez</option>
+                                <option *ngFor="let mr of listMatRoulants; let k=index" [ngValue]="mr" [selected]="mr.libelle==livraisonToUpdate.libelle">
+                                    {{mr.libelle}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>               
+                </div>  
+                <h4>Tous les champs précedés de <span style="color: red;">*</span> sont obligatoires</h4>                  
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit" (click)="modal.close('Save click')"><i class="fa fa-save">&nbsp;Enrégistrer</i></button>
+                </div>
+                <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">
+                   <i class="fa fa-times"></i>&nbsp;Fermer
+                </button>
+            </div>
+        </form>
+    </ng-template> -->
+</div>

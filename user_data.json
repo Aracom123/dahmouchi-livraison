@@ -1,0 +1,10 @@
+{
+    nom: 'BAKO',
+    prenom: 'ADAMOU',
+    email: 'bako.adamou@gmail.com',
+    numero: '98793379',
+    login: 'admin',
+    password: 'admin',
+    profile_id_profile: 1,
+    statut: true
+}

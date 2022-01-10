@@ -1,0 +1,31 @@
+.modal-xl .modal-lg {
+    max-width: 90%;
+}
+
+.nav-pills {
+    border-bottom: 1px solid #ddd;
+}
+.nav-pills li a {
+    /* background: #dadfe6;
+    color: rgb(53, 50, 50); */
+    display: block;
+    line-height: 2em;
+    padding: 2px 35px;
+    text-transform: uppercase;
+    font-weight: 100;
+    /* border-radius: 3px; */
+    font-size: 1.3rem;
+    /* border: 1px black solid; */
+    margin: 0px 0px 0;
+}
+ul li a {
+    text-decoration: none;
+}
+.nav-pills li a.active {
+    background: rgb(0, 31, 204);
+    border: none;
+    color: white;
+    border-radius: 3px; 
+
+    /* border: 1px white solid; */
+}

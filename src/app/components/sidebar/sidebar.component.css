@@ -1,0 +1,36 @@
+.logo{
+    color: #662B91;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 15px;;
+}
+.divlogo{
+    width: 100%;
+    margin: 0px !important;
+    display:block;
+    padding: 8px 5px;
+    margin-left: -20px !important;
+}
+.nav-link span, .nav-link i{
+    font-size: 16px !important;
+    color: white;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: red; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

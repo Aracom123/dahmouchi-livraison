@@ -1,0 +1,26 @@
+<div class="container" *ngIf="magasinFormGroup">
+    <div class="col-8 formulaire">
+        <h2 class="text-center">Ajouter Magasin</h2>
+        <form [formGroup]="magasinFormGroup">
+            
+            <div class="form-group">
+                <label for="">Libelle</label>
+                <input type="text" class="form-control" formControlName="libelle">
+            </div>
+            <div class="form-group">
+                <label for="">Adresse</label>
+                <input type="text" class="form-control" formControlName="adresse">
+            </div>
+            <div class="form-group">
+                <label for="">Dimension</label>
+                <input type="number" class="form-control" formControlName="dimension">
+            </div>
+           
+            <div class="form-group">
+                <button class="btn btn-success" (click)="onSaveMagasin()"><i class="fa fa-save"></i>&nbsp;Enregistrer</button>
+                &nbsp;
+                <button class="btn btn-danger" (click)="redirection('magasins')">Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>

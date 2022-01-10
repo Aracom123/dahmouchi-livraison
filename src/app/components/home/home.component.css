@@ -1,0 +1,13 @@
+.topbar-mr{
+    margin-left: 240px; 
+    top:0;
+    z-index: 999;
+}
+.topbar-mr .navbar-brand{
+    display: none !important;
+}
+/* #content .topbar-mr {
+    position: absolute;
+    top: 0;
+    right: 0;
+} */

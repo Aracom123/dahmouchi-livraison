@@ -1,39 +1,15 @@
-// function requireHTTPS(req, res, next) {
-//     // The 'x-forwarded-proto' check is for Heroku
-//     if (!req.secure && req.get('x-forwarded-proto') !== 'https') {
-//         return res.redirect('https://' + req.get('host') + req.url);
-//     }
-//     next();
-// }
-
+//Install express server
 const express = require('express');
-
 const path = require('path');
 
 const app = express();
 
-// const bodyParser = require('body-parser');
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/ara-livraison'));
 
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/ara-livraison/'}),
+);
 
-// app.use(requireHTTPS);
-app.use(express.static(__dirname +'/dist/ara-livraison'));
-
-app.get('/*', function(req,res) {
-    res.sendFile(path.join(__dirname+
-    '/dist/ara-livraison/index.html'));
-});
-
-// app.get('/*', function(req, res) {
-//     res.sendFile('index.html', {root: 'dist/ara-livraison/'});
-// });
-
-// var corsOptions = {
-//     origin: 'http://localhost:9191',
-//     optionsSuccessStatus: 200,
-// }
-// app.use(cors(corsOptions));
-
+// Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
-console.log("App listening on port 8080");
